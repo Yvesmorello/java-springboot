@@ -2,12 +2,11 @@ package br.edu.unicesumar.crud.controller;
 
 import br.edu.unicesumar.crud.model.Pessoa;
 import br.edu.unicesumar.crud.service.PessoaService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -25,9 +24,37 @@ public class PessoaController {
         return service.selectAll();
     }
 
+
     @GetMapping("/{id}")
     public Pessoa getId(@PathVariable Long id){
         return service.selectAll().stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null);
 
+    }
+
+    @GetMapping("/pesquisa"){
+        public List<Pessoa> getByNome(@RequestParam("valor" String valor){
+            CharSequence valor;
+            return  mock().stream().filter(pessoa -> pessoa.getNome().contains(valor)).collect(Collectors.toList());
+        })
+    }
+
+
+    @PostMapping
+    public Pessoa create(@RequestBody Pessoa pessoa){
+     long maxId = mock().stream().mapToLong(Pessoa::getId).max().orElse(0L);
+
+     return new Pessoa(maxId+1L, pessoa.getNome(), pessoa.getDocumento());
+
+    }
+
+
+
+    private List<Pessoa> mock() {
+        return Arrays.asList(new Pessoa(1L, "Antonio","123"),
+                            (new Pessoa(2L, "Bento","456"),
+                            (new Pessoa(3L, "João","789"),
+                            (new Pessoa(4L, "Joaquim","189"),
+                            (new Pessoa(5L, "Monica","999"),
+                            (new Pessoa(6L, "Magali","888")
     }
 }
