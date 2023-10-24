@@ -2,12 +2,12 @@ package br.edu.unicesumar.crud.model.domain;
 
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.NonNull;
 
-
 @Entity
-@Table(name = "es_pessoa")
-public class Pessoa {
+@Table(name = "es_editora")
+public class Editora {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,16 +16,13 @@ public class Pessoa {
     @NonNull
     private String nome;
 
-    @Column(name = "doc", length = 14)
-    private String documento;
+    @Column(name = "ano", length = 20)
+    private Integer ano;
 
-    public Pessoa(Long id, String nome, String documento) {
+    public Editora(Long id, String nome, Integer ano) {
         this.id = id;
         this.nome = nome;
-        this.documento = documento;
-    }
-
-    public Pessoa(){
+        this.ano = ano;
     }
 
     public Long getId() {
@@ -44,12 +41,11 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public String getDocumento() {
-        return documento;
+    public Integer getAno() {
+        return ano;
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
+    public void setAno(Integer ano) {
+        this.ano = ano;
     }
-
 }
