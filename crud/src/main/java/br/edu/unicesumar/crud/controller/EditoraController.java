@@ -25,23 +25,14 @@ public class EditoraController {
     public Editora getById(@PathVariable Long id){
         return editoraRepository.findById(id).orElse(null);
     }
-//
-//    @PutMapping("/{id}")
-//    public Editora update(@PathVariable Long id, @RequestBody Editora editoraUpdate){
-//        Pessoa pessoEdit = mock().stream().filter(editora->editora.getId().equals(id))
-//                .findFirst().orElse(null);
-//
-//        if(pessoEdit == null) {
-//            return null;
-//        }
-//        return new Pessoa(pessoEdit.getId(), editoraUpdate.getNome(), editoraUpdate.getDocumento());
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public void delete(@PathVariable Long id){
-//        Pessoa pessoaRemove = mock().stream().filter(pessoa->pessoa.getId().equals(id))
-//                .findFirst().orElse(null);
-//
-//        mock().remove(pessoaRemove);
-//    }
+
+    @PostMapping
+    public Editora create(@RequestBody Editora novaEditora){
+        return editoraRepository.save(novaEditora);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        editoraRepository.deleteById(id);
+    }
 }
