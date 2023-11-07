@@ -1,11 +1,11 @@
 package br.edu.unicesumar.crud.controller;
 
-        import br.edu.unicesumar.crud.model.domain.Pessoa;
-        import br.edu.unicesumar.crud.model.repository.PessoaRepository;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.web.bind.annotation.*;
+import br.edu.unicesumar.crud.model.domain.Pessoa;
+import br.edu.unicesumar.crud.model.repository.PessoaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-        import java.util.List;
+import java.util.List;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -33,14 +33,5 @@ public class PessoaController {
     public void delete(@PathVariable Long id) {
         pessoaRepository.deleteById(id);
     }
-
-    @GetMapping("/consulta")
-    public List<Pessoa> consultaByDoc(@RequestParam("doc")String doc){
-        return pessoaRepository.searchByDocumentoNativo(doc);
-
-    }
-
-
-
 
 }
